@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theophilus Tawona — Engineer & Data Scientist</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0f0f;
+      --ink-muted: #555;
+      --ink-faint: #999;
+      --surface: #fafaf8;
+      --surface-alt: #f2f1ee;
+      --accent: #1a3c5e;
+      --accent-light: #e8eef4;
+      --rule: #e0ddd8;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --max: 860px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(250,250,248,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 6rem 2.5rem; max-width: var(--max); margin: 0 auto; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 8rem; padding-bottom: 4rem;
+      max-width: var(--max); margin: 0 auto;
+      padding-left: 2.5rem; padding-right: 2.5rem;
+    }
+    .hero-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-tagline {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.2s;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .hero-cta:hover { background: #0e2a45; transform: translateY(-2px); }
+    .hero-cta svg { width: 16px; height: 16px; }
+    .hero-divider {
+      width: 48px; height: 3px;
+      background: var(--accent);
+      margin-top: 5rem;
+      opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+    }
+
+    /* SECTION HEADINGS */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .section-rule {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 4rem;
+    }
+
+    /* ABOUT */
+    #about { border-top: 1px solid var(--rule); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--ink-muted);
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .stat-item {
+      padding: 1.5rem;
+      background: var(--surface-alt);
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+    }
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--surface-alt); max-width: 100%; padding-left: 0; padding-right: 0; }
+    .skills-inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .skill-category {
+      padding: 2rem;
+      background: var(--surface);
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+    }
+    .skill-category-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      padding: 0.3rem 0.75rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-radius: 2px;
+    }
+
+    /* EXPERIENCE */
+    #experience { border-top: 1px solid var(--rule); }
+    .timeline { position: relative; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2.5rem;
+      padding-bottom: 3.5rem;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 180px;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 174px;
+      top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .timeline-date {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-faint);
+      text-align: right;
+      padding-right: 2.5rem;
+      padding-top: 0.1rem;
+      letter-spacing: 0.03em;
+    }
+    .timeline-content { padding-left: 1.5rem; }
+    .timeline-role {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-company {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+    .timeline-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .timeline-tag {
+      padding: 0.2rem 0.6rem;
+      background: var(--surface-alt);
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+    }
+
+    /* EDUCATION */
+    #education { background: var(--surface-alt); max-width: 100%; padding-left: 0; padding-right: 0; }
+    .edu-inner { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .edu-institution {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .edu-year {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+    .edu-detail {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+
+    /* CONTACT */
+    #contact { border-top: 1px solid var(--rule); text-align: center; }
+    .contact-inner { max-width: 540px; margin: 0 auto; }
+    .contact-intro {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .contact-link:hover { background: var(--accent); color: #fff; }
+    .contact-link svg { width: 16px; height: 16px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: var(--max); margin: 0 auto;
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 720px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.25rem; }
+      section, #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-item::before, .timeline-item::after { display: none; }
+      .timeline-date { text-align: left; padding-right: 0; }
+      .timeline-content { padding-left: 0; }
+      .edu-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">T. Tawona</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-label">Engineer · Data Scientist · Problem Solver</div>
+    <h1 class="hero-name">Theophilus<br><em>Tawona</em></h1>
+    <p class="hero-tagline">Bridging mechanical engineering, industrial systems, and data science to design solutions that actually work in the real world.</p>
+    <div class="hero-divider"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal">About Me</div>
+    <h2 class="section-title reveal">A cross-disciplinary<br>engineer at heart</h2>
+    <hr class="section-rule reveal">
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm a Mechanical Engineer by training, with a career that has deliberately crossed industries — from manufacturing and mineral processing to property finance and data science consulting. What connects it all is a systems mindset: the ability to see how the pieces fit, where the inefficiencies hide, and how data can drive better decisions.</p>
+        <p>On the financial side, I've built real capability from the ground up. As Finance Administrator and later Finance Manager, I took ownership of financial operations, designed payment processing systems, and built reporting pipelines that gave leadership clear, actionable visibility into performance. I understand P&L, cashflow, budget variance, and the financial mechanics that determine whether a business is actually healthy — not just on paper.</p>
+        <p>I founded Corporate Analytica to bring data science and automation into environments that need it most — combining engineering rigour with financial literacy to build solutions that are both technically sound and commercially meaningful. Currently deepening this through a Master's in Industrial Engineering with a specialisation in Data Science.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">3+</div>
+          <div class="stat-desc">Industries worked across — manufacturing, mineral processing & property</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">MSc</div>
+          <div class="stat-desc">Industrial Engineering (Data Science) — currently in progress</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">∞</div>
+          <div class="stat-desc">Appetite for learning new technologies and solving complex problems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="skills-inner">
+      <div class="section-label reveal">Capabilities</div>
+      <h2 class="section-title reveal">Skills & Technologies</h2>
+      <hr class="section-rule reveal">
+      <div class="skills-grid reveal">
+        <div class="skill-category">
+          <div class="skill-category-title">Engineering</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Mechanical Engineering</span>
+            <span class="skill-tag">Industrial Engineering</span>
+            <span class="skill-tag">Process Optimisation</span>
+            <span class="skill-tag">Systems Design</span>
+            <span class="skill-tag">Manufacturing</span>
+            <span class="skill-tag">Mineral Processing</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Data Science & AI</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Statistical Modelling</span>
+            <span class="skill-tag">Data Visualisation</span>
+            <span class="skill-tag">AI & Automation</span>
+            <span class="skill-tag">Reporting Pipelines</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">Technical Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Excel / VBA</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Coding & Scripting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label reveal">Career</div>
+    <h2 class="section-title reveal">Work Experience</h2>
+    <hr class="section-rule reveal">
+    <div class="timeline reveal">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Feb 2025 – Present</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Finance Manager</div>
+          <div class="timeline-company">HCI Live the City — Johannesburg, SA</div>
+          <div class="timeline-desc">Leading financial operations across the portfolio, overseeing budgeting, reporting, and financial controls. Designed and implemented payment processing systems and dynamic reporting pipelines, including budget variance analysis tools and cashflow planning frameworks for residential and commercial properties.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Financial Management</span>
+            <span class="timeline-tag">Reporting Pipelines</span>
+            <span class="timeline-tag">Payment Systems</span>
+            <span class="timeline-tag">Budget & Variance Analysis</span>
+            <span class="timeline-tag">Excel Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Aug 2024 – Feb 2025</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Founder & Consultant</div>
+          <div class="timeline-company">Corporate Analytica</div>
+          <div class="timeline-desc">Founded Corporate Analytica to deliver data science and automation consulting to businesses that need it most. Designed analytical systems, automation pipelines, and data-driven tools for clients — applying a rare combination of engineering rigour, financial literacy, and technical depth to solve real operational problems.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Data Science</span>
+            <span class="timeline-tag">Automation</span>
+            <span class="timeline-tag">Consulting</span>
+            <span class="timeline-tag">Analytics</span>
+            <span class="timeline-tag">Business Intelligence</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Nov 2023 – Aug 2024</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Finance Administrator</div>
+          <div class="timeline-company">Mafadi Property Management</div>
+          <div class="timeline-desc">Managed financial administration across a mixed residential and commercial property portfolio. Developed operational reporting tools, supported cashflow management, and built foundational experience in property finance — bridging engineering systems thinking with financial operations.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Property Finance</span>
+            <span class="timeline-tag">Financial Administration</span>
+            <span class="timeline-tag">Reporting</span>
+            <span class="timeline-tag">Cashflow Management</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Sep 2022 – Nov 2023</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Full-time Studies</div>
+          <div class="timeline-company">BEng Mechanical Engineering</div>
+          <div class="timeline-desc">Dedicated period of full-time study to complete the Bachelor of Engineering in Mechanical Engineering — building core competencies in thermodynamics, mechanics, manufacturing processes, and systems design that underpin all subsequent professional work.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Mechanical Engineering</span>
+            <span class="timeline-tag">Thermodynamics</span>
+            <span class="timeline-tag">Systems Design</span>
+            <span class="timeline-tag">Manufacturing Processes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Feb 2022 – Sep 2022</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Engineering Intern</div>
+          <div class="timeline-company">Zimplats (Zimbabwe Platinum Mines)</div>
+          <div class="timeline-desc">Gained hands-on exposure to large-scale mineral processing operations at one of Africa's leading platinum producers. Applied mechanical engineering principles to process equipment, maintenance systems, and operational efficiency challenges in a demanding mining environment.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Mineral Processing</span>
+            <span class="timeline-tag">Mining Engineering</span>
+            <span class="timeline-tag">Process Equipment</span>
+            <span class="timeline-tag">Maintenance Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Aug 2021 – Feb 2022</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Mechanical Engineering Intern</div>
+          <div class="timeline-company">Proplastics</div>
+          <div class="timeline-desc">First professional exposure to industrial engineering in a plastic manufacturing environment. Developed practical skills in mechanical systems, production processes, and quality control — forming the foundation for a career built on systems thinking and problem solving.</div>
+          <div class="timeline-tags">
+            <span class="timeline-tag">Plastic Manufacturing</span>
+            <span class="timeline-tag">Mechanical Engineering</span>
+            <span class="timeline-tag">Production Systems</span>
+            <span class="timeline-tag">Quality Control</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="edu-inner">
+      <div class="section-label reveal">Academic</div>
+      <h2 class="section-title reveal">Education</h2>
+      <hr class="section-rule reveal">
+      <div class="edu-grid reveal">
+
+        <div class="edu-card">
+          <div class="edu-degree">Master of Science — Industrial Engineering</div>
+          <div class="edu-institution"><!-- Add your university name --></div>
+          <div class="edu-year">In Progress</div>
+          <div class="edu-detail">Specialisation in Data Science — covering machine learning, statistical modelling, optimisation, and data-driven decision making in industrial contexts.</div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-degree">Bachelor of Engineering — Mechanical Engineering</div>
+          <div class="edu-institution"><!-- Add your university name --></div>
+          <div class="edu-year"><!-- Add graduation year --></div>
+          <div class="edu-detail">Foundation in engineering principles, thermodynamics, mechanics, manufacturing processes, and systems design.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Let's Connect</h2>
+    <hr class="section-rule reveal">
+    <div class="contact-inner reveal">
+      <p class="contact-intro">I'm open to opportunities at the intersection of engineering, data science, and automation. Whether it's a role, a collaboration, or just a conversation — reach out.</p>
+      <div class="contact-links">
+        <a href="mailto:your@email.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/your-username" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Theophilus Tawona</span>
+    <span>Johannesburg, South Africa</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth active nav
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
